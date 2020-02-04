@@ -1,4 +1,11 @@
 import sys
+
+def error(cause):
+    print()
+    print(cause)
+    print()
+    input("Press RETURN to exit the program")
+
 file = open(sys.argv[1], "r")
 lines = file.read().split(";")
 
@@ -7,28 +14,36 @@ for line in range(len(lines)):
     for n in range(len(lines[line])):
         if "\n" in lines[line][n]:
             lines[line][n] = lines[line][n].replace("\n", "")
-print(lines)
 
 storage = {}
 
 useless = None
+exiting = False
 
 for n in range(len(lines)):
+    if exiting:
+        break
     line = lines[n]
-    if line[0] in ["var", "variable"] and len(line) in [3]:
-        try:
-            line[1] = int(line[1])
-            ## ERROR
-        except:
+    if line[0] in ["var", "variable"]:
+        if len(line) == 3:
             try:
-                line[2] = int(line[2])
-                storage[line[1]] = line[2]
+                line[1] = int(line[1])
+                error("Variable name cannot be a number" + "\n" + "Line " + str(n + 1))
+                exiting = True
+                
             except:
                 try:
-                    storage[line[1]] = storage[line[2]]
+                    line[2] = int(line[2])
+                    storage[line[1]] = line[2]
                 except:
-                    pass
-                    ## ERROR
+                    try:
+                        storage[line[1]] = storage[line[2]]
+                    except:
+                        error("Variable " + str(line[2]) + " does not exist" + "\n" + "Line " + str(n + 1))
+                        exiting = True
+        else:
+            error("Var takes 2 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            exiting = True
 
 print(storage)
 input()
