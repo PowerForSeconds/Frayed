@@ -46,25 +46,25 @@ for n in range(len(lines)):
             exiting = True
 
     if line[0] == "add":
-        if len(line) == 4:
+        if len(line) == 3:
             total = 0
             try:
                 line[1] = int(line[1])
-                error("Variable name cannot be a number" + "\n" + "Line " + str(n + 1))
-                exiting = True
-                
+                total += line[1]
             except:
                 try:
-                    line[2] = int(line[2])
-                    storage[line[1]] = line[2]
+                    total += storage[line[1]]
                 except:
-                    try:
-                        storage[line[1]] = storage[line[2]]
-                    except:
-                        error("Variable " + str(line[2]) + " does not exist" + "\n" + "Line " + str(n + 1))
-                        exiting = True
+                    error("Variable " + str(line[1]) + " does not exist" + "\n" + "Line " + str(n + 1))
+                    exiting = True
+            try:
+                useless = storage[line[2]]
+                storage[line[2]] += total
+            except:
+                error("Variable " + str(line[2]) + " does not exist" + "\n" + "Line " + str(n + 1))
+                exiting = True
         else:
-            error("Add takes 3 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            error("Add takes 2 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
 
 print(storage)

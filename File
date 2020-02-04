@@ -1,3 +1,4 @@
 var one 1;
 var two 2;
-var oneagain one;
+var three -15;
+add one two;
