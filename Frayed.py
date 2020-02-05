@@ -77,7 +77,7 @@ while n < len(lines):
                 op2 = int(line[2])
             except:
                 try:
-                    op2 += storage[line[2]]
+                    op2 = storage[line[2]]
                 except:
                     error("Variable " + str(line[2]) + " does not exist" + "\n" + "Line " + str(n + 1))
                     exiting = True
@@ -95,7 +95,7 @@ while n < len(lines):
         else:
             error("GOTO takes 3 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
-
+            
     n += 1
 
 print(storage)
