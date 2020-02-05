@@ -1,6 +1,0 @@
-VAR one;
-VAR two;
-VAR three;
-ADD one;
-SUB three;
-GOTO three -1 4;
