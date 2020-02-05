@@ -3,3 +3,4 @@ var two 2;
 var three 3;
 add one two;
 sub one three;
+goto two 3 4

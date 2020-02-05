@@ -20,7 +20,9 @@ storage = {}
 useless = None
 exiting = False
 
-for n in range(len(lines)):
+n = 0
+
+while n < len(lines):
     if exiting:
         break
     line = lines[n]
@@ -88,6 +90,41 @@ for n in range(len(lines)):
         else:
             error("Add takes 2 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
+
+    if line[0] == "goto":
+        if len(line) == 4:
+            try:
+                op1 = int(line[1])
+            except:
+                try:
+                    op1 = storage[line[1]]
+                except:
+                    error("Variable " + str(line[1]) + " does not exist" + "\n" + "Line " + str(n + 1))
+                    exiting = True
+            try:
+                op2 = int(line[2])
+            except:
+                try:
+                    op2 += storage[line[2]]
+                except:
+                    error("Variable " + str(line[2]) + " does not exist" + "\n" + "Line " + str(n + 1))
+                    exiting = True
+            if not exiting and op1 == op2:
+                try:
+                    line[3] = int(line[3])
+                    if line[3] - 1 >= 0 and line[3] - 1 <= len(lines):
+                        n = line[3] - 2
+                    else:
+                        error("Third input must be a valid line number" + "\n" + "Line " + str(n + 1))
+                        exiting = True
+                except:
+                    error("Third input must be a number" + "\n" + "Line " + str(n + 1))
+                    exiting = True
+        else:
+            error("Add takes 3 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            exiting = True
+
+    n += 1
 
 print(storage)
 input()
