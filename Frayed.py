@@ -26,6 +26,8 @@ while n < len(lines):
     if exiting:
         break
     line = lines[n]
+    if line[0] == "//":
+        pass
     if line[0] == "RETURN":
         if len(line) == 2:
             try:
@@ -106,6 +108,9 @@ while n < len(lines):
         else:
             error("GOTO takes 3 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
+    else:
+        error("Function " + line[0] + " does not exist" + "\n" + "Line " + str(n + 1))
+        exiting = True 
             
     n += 1
 
