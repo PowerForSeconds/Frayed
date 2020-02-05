@@ -26,7 +26,7 @@ while n < len(lines):
     if exiting:
         break
     line = lines[n]
-    if line[0] == "var":
+    if line[0] == "VAR":
         if len(line) == 2:
             try:
                 line[1] = int(line[1])
@@ -36,10 +36,10 @@ while n < len(lines):
             except:
                 storage[line[1]] = 0
         else:
-            error("Var takes 1 input, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            error("VAR takes 1 input, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
 
-    if line[0] == "add":
+    if line[0] == "ADD":
         if len(line) == 2:
             try:
                 useless = storage[line[1]]
@@ -48,10 +48,10 @@ while n < len(lines):
                 error("Variable " + str(line[2]) + " does not exist" + "\n" + "Line " + str(n + 1))
                 exiting = True
         else:
-            error("Add takes 2 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            error("ADD takes 1 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
 
-    if line[0] == "sub":
+    if line[0] == "SUB":
         if len(line) == 2:
             try:
                 useless = storage[line[1]]
@@ -60,10 +60,10 @@ while n < len(lines):
                     error("Variable " + str(line[1]) + " does not exist" + "\n" + "Line " + str(n + 1))
                     exiting = True
         else:
-            error("Add takes 1 input, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            error("SUB takes 1 input, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
 
-    if line[0] == "goto":
+    if line[0] == "GOTO":
         if len(line) == 4:
             try:
                 op1 = int(line[1])
@@ -93,7 +93,7 @@ while n < len(lines):
                     error("Third input must be a number" + "\n" + "Line " + str(n + 1))
                     exiting = True
         else:
-            error("Add takes 3 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            error("GOTO takes 3 inputs, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
             exiting = True
 
     n += 1

@@ -1,6 +1,6 @@
-var one;
-var two;
-var three;
-add one;
-sub three;
-goto three -1 4;
+VAR one;
+VAR two;
+VAR three;
+ADD one;
+SUB three;
+GOTO three -1 4;
