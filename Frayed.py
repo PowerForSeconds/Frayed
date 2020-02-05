@@ -26,6 +26,17 @@ while n < len(lines):
     if exiting:
         break
     line = lines[n]
+    if line[0] == "RETURN":
+        if len(line) == 2:
+            try:
+                line[1] = int(line[1])
+                print(line[1])
+                
+            except:
+                print(storage[line[1]])
+        else:
+            error("RETURN takes 1 input, not " + str(len(line) - 1) + "\n" + "Line " + str(n + 1))
+            exiting = True
     if line[0] == "VAR":
         if len(line) == 2:
             try:
@@ -98,5 +109,5 @@ while n < len(lines):
             
     n += 1
 
-print(storage)
+#print(storage)
 input()
